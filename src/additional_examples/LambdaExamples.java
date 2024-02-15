@@ -50,7 +50,19 @@ public class LambdaExamples {
 
         System.out.println("--------------");
         coords.forEach(s -> processPoint(s[0], s[1], p1));
-        coords.forEach(s -> processPoint(s[0], s[1], (lat, lng) -> System.out.printf("[lat:%.3f lon:%.3f]%n", lat, lng)));
+        coords.forEach(a -> processPoint(a[0], a[1], (lat, lng) -> System.out.printf("[lat:%.3f lon:%.3f]%n", lat, lng)));
+
+        list.removeIf(s -> s.equalsIgnoreCase("bravo"));
+        list.forEach(s -> System.out.println(s));
+
+        list.addAll(List.of("echo", "easy", "earnest"));
+        list.forEach(s -> System.out.println(s));
+
+        System.out.println("-------");
+        list.removeIf(s -> s.startsWith("ea"));
+        list.forEach(s -> System.out.println(s));
+
+
     }
 
     public static <T> T calculator(BinaryOperator<T> function, T value1, T value2) {
