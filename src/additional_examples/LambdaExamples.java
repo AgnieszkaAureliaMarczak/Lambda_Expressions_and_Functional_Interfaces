@@ -44,7 +44,7 @@ public class LambdaExamples {
         );
         coords.forEach(s -> System.out.println(Arrays.toString(s)));
 
-        BiConsumer<Double,Double> p1 = (lat, lng) -> System.out.printf("[lat:%.3f lon:%.3f]%n", lat, lng);
+        BiConsumer<Double, Double> p1 = (lat, lng) -> System.out.printf("[lat:%.3f lon:%.3f]%n", lat, lng);
         var firstPoint = coords.get(0);
         processPoint(firstPoint[0], firstPoint[1], p1);
 
@@ -62,7 +62,27 @@ public class LambdaExamples {
         list.removeIf(s -> s.startsWith("ea"));
         list.forEach(s -> System.out.println(s));
 
+        list.replaceAll(s -> s.charAt(0) + " - " + s.toUpperCase());
+        System.out.println("-------------");
+        list.forEach(s -> System.out.println(s));
 
+        String[] emptyStrings = new String[10];
+        System.out.println(Arrays.toString(emptyStrings));
+        Arrays.fill(emptyStrings, "");
+        System.out.println(Arrays.toString(emptyStrings));
+
+        Arrays.setAll(emptyStrings, (i) -> "" + (i + 1) + ". ");
+        System.out.println(Arrays.toString(emptyStrings));
+
+        Arrays.setAll(emptyStrings, (i) -> "" + (i + 1) + ". "
+                        + switch (i) {
+                    case 0 -> "one";
+                    case 1 -> "two";
+                    case 2 -> "three";
+                    default -> "";
+                }
+        );
+        System.out.println(Arrays.toString(emptyStrings));
     }
 
     public static <T> T calculator(BinaryOperator<T> function, T value1, T value2) {
@@ -71,7 +91,7 @@ public class LambdaExamples {
         return result;
     }
 
-    public static <T> void processPoint(T t1, T t2, BiConsumer<T, T> consumer){
+    public static <T> void processPoint(T t1, T t2, BiConsumer<T, T> consumer) {
         consumer.accept(t1, t2);
     }
 }
