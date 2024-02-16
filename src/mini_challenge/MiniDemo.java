@@ -2,6 +2,7 @@ package mini_challenge;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 public class MiniDemo {
@@ -34,23 +35,35 @@ public class MiniDemo {
         UnaryOperator<String> myString = s -> {
             StringBuilder returnVal = new StringBuilder();
             for (int i = 0; i < s.length(); i++) {
-                if (i % 2 == 1){
+                if (i % 2 == 1) {
                     returnVal.append(s.charAt(i));
                 }
             }
             return returnVal.toString();
         };
-       //myString.apply("");
+        System.out.println(myString.apply("1234567890"));
+        System.out.println("--------------");
 
+        System.out.println(everySecondCharacter(myString, "1234567890"));
+        System.out.println("--------------");
+
+        //Supplier Interface
+        Supplier<String> iLoveJava = () -> "I love Java";
+        String supplierResult = iLoveJava.get();
+        System.out.println(supplierResult);
     }
 
     public static String everySecondChar(String source) {
         StringBuilder returnVal = new StringBuilder();
         for (int i = 0; i < source.length(); i++) {
-            if (i % 2 == 1){
+            if (i % 2 == 1) {
                 returnVal.append(source.charAt(i));
             }
         }
         return returnVal.toString();
+    }
+
+    public static String everySecondCharacter(UnaryOperator<String> s, String tekst) {
+        return s.apply(tekst);
     }
 }
