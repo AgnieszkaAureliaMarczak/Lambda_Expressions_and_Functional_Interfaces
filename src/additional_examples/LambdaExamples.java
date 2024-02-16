@@ -3,8 +3,10 @@ package additional_examples;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
+import java.util.function.Supplier;
 
 public class LambdaExamples {
     public static void main(String[] args) {
@@ -83,6 +85,10 @@ public class LambdaExamples {
                 }
         );
         System.out.println(Arrays.toString(emptyStrings));
+
+        String[] names = {"Ann", "Bob", "Carol", "David", "Ed", "Fred"};
+        String[] randomList = randomlySelectedValues(15, names, () -> new Random().nextInt(0, names.length));
+        System.out.println(Arrays.toString(randomList));
     }
 
     public static <T> T calculator(BinaryOperator<T> function, T value1, T value2) {
@@ -93,5 +99,13 @@ public class LambdaExamples {
 
     public static <T> void processPoint(T t1, T t2, BiConsumer<T, T> consumer) {
         consumer.accept(t1, t2);
+    }
+
+    public static String[] randomlySelectedValues(int count, String[] values, Supplier<Integer> s){
+        String[] selectedValues = new String[count];
+        for (int i = 0; i < count; i++) {
+            selectedValues[i] = values[s.get()];
+        }
+        return selectedValues;
     }
 }
