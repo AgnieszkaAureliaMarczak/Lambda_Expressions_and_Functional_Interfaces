@@ -56,7 +56,7 @@ public class Main {
         return (char) random.nextInt((int) startChar, (int) endChar + 1);
     }
 
-    private static String getReversedName(String firstName) {
+    public static String getReversedName(String firstName) {
         return new StringBuilder(firstName).reverse().toString();
     }
 }
